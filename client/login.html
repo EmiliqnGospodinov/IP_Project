@@ -1,13 +1,22 @@
-<div id="signInDiv">
-  <form method="post" action="/login">
-    Username: <input id="signInDiv-username" type="text" name="username"></input><br>
-    Password: <input id="signInDiv-password" type="password" name="password"></input>
-    <input type="submit" value="login" id="signInDiv-signIn"></input>
-  </form>
-    <button id="signInDiv-signUp">Sign Up</button>
-</div>
-<div id="signUpDiv" style="display:none;">
-  Username: <input id="signUpDiv-username" type="text"></input><br>
-  Password: <input id="signUpDiv-password" type="password"></input>
-  <button id="signUp">Sign Up</button>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <div id="signInDiv">
+    <form method="post" action="/login">
+      Username: <input id="signInDiv-username" type="text" name="username"></input><br>
+      Password: <input id="signInDiv-password" type="password" name="password"></input>
+      <input type="submit" value="login" id="signInDiv-signIn"></input>
+    </form>
+      <button id="signInDiv-signUp">Sign Up</button>
+  </div>
+  <div id="signUpDiv" style="display:none;">
+    <form method="post" action="/register">
+      Username: <input id="signUpDiv-username" type="text"></input><br>
+      Password: <input id="signUpDiv-password" type="password"></input>
+      <button id="signUp">Register new user</button>
+    </form>
+  </div>
+</body>
+</html>
