@@ -6,12 +6,6 @@ socket.emit("signIn",{
 });
 metaTag.parentNode.removeChild(metaTag);
 
-
-//var register = document.getElementById('RegisterDiv');
-//var openRegFormButton = document.getElementById('openRegForm');
-//openRegFormButton.onclick = function(){
-//  register.style.display = 'block;';
-//}
 //game
 var playerx,playery;
 const ctx = document.getElementById("ctx").getContext("2d");
@@ -31,15 +25,20 @@ var Player = function(initPack){
   var cradius = 30;
 
   self.draw = function(){
+    ctx.fillStyle = 'white';
     ctx.fillText(self.username,self.x - cradius,self.y -51);// name
     var hpWidth = 100 * self.hp/ 10;
     ctx.fillStyle = 'red';
     ctx.fillRect(self.x - hpWidth / 2, self.y - 40, hpWidth, 4);// HP bar
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = 'white';
     ctx.fillText("HP ",self.x - cradius,self.y - 35);// HP text
     ctx.fillText("Score: " + self.score,self.x - cradius,self.y - 43);// score
     ctx.beginPath();
     ctx.arc(self.x,self.y,cradius,0,2*Math.PI);// circle(x,y, radius, cut(whole circle))
+    ctx.fillStyle = 'green';
+    ctx.fill();
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = '#003300';
     ctx.stroke();
     playerx = self.x;
     playery = self.y;
@@ -56,6 +55,7 @@ var Bullet = function(initPack){
   self.x = initPack.x;
   self.y = initPack.y;
   self.draw = function(){
+    ctx.fillStyle = 'yellow';
     ctx.fillRect(self.x-5,self.y-5,5,5);//center the bullet
   }
 

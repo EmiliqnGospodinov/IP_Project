@@ -14,16 +14,19 @@ app.use(sessions({cookieName:'session',
 
 // db
 var mongojs = require('mongojs');
-var db = mongojs('mongodb://decisioner:emo123456@ds117199.mlab.com:17199/shooterzdb', ['account','progress']);
+var db = mongojs('mongodb://ipdbuser:emo030998@ds127321.mlab.com:27321/ipprojectdb', ['account']);
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
-app.post('/login', urlencodedParser, function (req, res) {
+app.post('/loggedin', urlencodedParser, function (req, res) {
   findUser(req.body, function(){
     req.session.username = req.body.username;
     res.render('index', {username: req.session.username});
   }, function(){
     res.redirect('/');
   });
+});
+
+app.post('/registered', urlencodedParser, function (req, res){
 });
 
 app.get('/', function(req, res){
@@ -72,7 +75,7 @@ var Player = function(id, username){
   self.pressingDown = false;
   self.pressingAttack = false;
   self.mouseAngle = 0;
-  self.maxSpd = 7;
+  self.maxSpd = 9;
   self.hp = 3;
   self.hpMax = 3;
   self.score = 0;
@@ -262,19 +265,7 @@ var findUser = function(data, cb, loginError){
             loginError();
     });
 }
-var isUsernameTaken = function(data,cb){
-    db.account.find({username:data.username},function(err,res){
-        if(res.length > 0)
-            cb(true);
-        else
-            cb(false);
-    });
-}
-var addUser = function(data,cb){
-    db.account.insert({username:data.username,password:data.password},function(err){
-        cb();
-    });
-}
+
 var io = require('socket.io')(serv,{});
 io.sockets.on('connection', function(socket){
   socket.on('signIn',function(data){
